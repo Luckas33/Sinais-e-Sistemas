@@ -39,7 +39,7 @@ disp(['Bits por amostra: ', num2str(bits)]);
 “Vila.wav".
 %}
 
-sound(y,fs);
+#sound(y,fs);
 
 %{
 3. Manipulação do Áudio com audioplayer
@@ -52,24 +52,30 @@ original.
 
 w = flip(y);
 
-sound(w, fs); #Invertida
-sound(y, fs/2); #Lenta
-sound(y, fs*2); #Rápido
+#sound(w, fs); #Invertida
+#sound(y, fs/2); #Lenta
+#sound(y, fs*2); #Rápido
 
 %{
 4. Programação de uma Função para Transformações no Sinal
 • Escrever uma função em Octave (ou MATLAB) com entrada (x, a, b) e saída y,
-onde a saída é dada por: y(n) = x(a ⋅ n + b)
+onde a saída é dada por: y(n) = x(a * n + b)
 • Reproduzir a saída da função com valores de a e b diferentes e observar as
 modificações no sinal de entrada.
 %}
 
-function y_out = transformacao(a, b, x)
+function y = transformacao(a, b, x)
     n = 1:length(x);
     n_modificado = round(a * n + b);
     n_modificado = n_modificado(n_modificado > 0 & n_modificado <= length(x));
-    y_out = x(n_modificado);
+    y = x(n_modificado);
 end
+
+y_a = transformacao(-1,600000,y);
+y_b = transformacao(0.75,-100000,y);
+sound(y,fs);
+sound(y_a,fs); # Reverso
+sound(y_b,fs); # Lento com atraso
 
 %{
 5. Análise das Operações
@@ -81,7 +87,14 @@ independente do sinal:
   produzindo atraso ou adiantamento no sinal.
 %}
 
+%{
+Parâmetros (a, b)	Efeito na Saída y	Explicação de Sinais e Sistemas
+(2, 0)	Comprimir o sinal pela metade.	A música tocará duas vezes mais rápido (dobro da frequência).
+(0.5, 0)	Expandir o sinal pelo dobro.	A música tocará duas vezes mais lento (metade da frequência).
+(-1, 0)	Inverter o sinal no tempo.	A música tocará de trás para frente (como você fez com flipud).
+(1, -10000)	Atrasar o sinal.	A música começará com 10.000 amostras de atraso (silêncio).
 
+%}
 
 
 
