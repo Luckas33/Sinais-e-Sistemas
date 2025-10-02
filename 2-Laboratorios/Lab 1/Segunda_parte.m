@@ -25,45 +25,13 @@ audio = ('Ela_partiu.wav');
 
 [y,fs] = audioread(audio);
 
+info = audioinfo(audio);
 
-N_plot = 500;
+bits = info.BitsPerSample;
 
-% Verifica se o sinal tem 2 canais (estéreo)
-if size(y, 2) == 2
+disp(['Frequência de amostragem: ', num2str(fs), ' Hz']);
+disp(['Bits por amostra: ', num2str(bits)]);
 
-    % --- Figura 1: Canal 1 (Esquerdo) ---
-    figure(1); % Abre a primeira janela de gráfico
-    stem(y(1:N_plot, 1));
-    title('Canal 1 (Esquerdo) - y_L[k]');
-    xlabel('Índice da Amostra (k)');
-    ylabel('Amplitude');
-    grid on;
-
-    % --- Figura 2: Canal 2 (Direito) ---
-    figure(2); % Abre a segunda janela de gráfico
-    stem(y(1:N_plot, 2));
-    title('Canal 2 (Direito) - y_R[k]');
-    xlabel('Índice da Amostra (k)');
-    ylabel('Amplitude');
-    grid on;
-
-    disp('Os dois canais foram plotados em janelas de figura separadas (Figura 1 e Figura 2).');
-
-elseif size(y, 2) == 1
-
-    % Se for mono, plota apenas a figura 1
-    figure(1);
-    stem(y(1:N_plot));
-    title('Sinal Mono - y[k]');
-    xlabel('Índice da Amostra (k)');
-    ylabel('Amplitude');
-    grid on;
-    disp('O sinal é mono (1 canal). Plotado na Figura 1.');
-
-else
-    disp('O sinal tem um número de canais inesperado. Plotagem interrompida.');
-    disp(['Número de canais detectados: ' num2str(size(y, 2))]);
-end
 
 %{
 2. Reprodução do Áudio
@@ -82,7 +50,9 @@ original.
 • Duração rápida: Reproduza o áudio em dobro da velocidade.
 %}
 
-sound(y, fs); #Invertida
+w = flip(y);
+
+sound(w, fs); #Invertida
 sound(y, fs/2); #Lenta
 sound(y, fs*2); #Rápido
 
