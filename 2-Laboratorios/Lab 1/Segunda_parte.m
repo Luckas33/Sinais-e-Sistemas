@@ -41,21 +41,20 @@ disp(['Bits por amostra: ', num2str(bits)]);
 
 sound(y,fs);
 
-w = flip(y)
+%{
+3. Manipulação do Áudio com audioplayer
+• Reproduzir o áudio nas seguintes variações:
+• Execução invertida: Reproduza o sinal ao contrário.
+• Duração lenta: Reproduza o áudio em metade da velocidade
+original.
+• Duração rápida: Reproduza o áudio em dobro da velocidade.
+%}
 
-sound(w, fs);
+w = flip(y);
 
-sound(y, fs/2);
-
-sound(y, fs*2);
-
-function y_out = transformacao(a, b, x)
-    n = 1:length(x);
-    n_modificado = round(a * n + b);p
-    n_modificado = n_mod(n_mod p> 0 & n_mod <= length(x));
-    y_out = x(n_mod);
-end
-
+sound(w, fs); #Invertida
+sound(y, fs/2); #Lenta
+sound(y, fs*2); #Rápido
 
 %{
 4. Programação de uma Função para Transformações no Sinal
