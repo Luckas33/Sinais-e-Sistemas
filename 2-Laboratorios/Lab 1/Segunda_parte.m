@@ -56,6 +56,30 @@ sound(w, fs); #Invertida
 sound(y, fs/2); #Lenta
 sound(y, fs*2); #Rápido
 
+%{
+4. Programação de uma Função para Transformações no Sinal
+• Escrever uma função em Octave (ou MATLAB) com entrada (x, a, b) e saída y,
+onde a saída é dada por: y(n) = x(a ⋅ n + b)
+• Reproduzir a saída da função com valores de a e b diferentes e observar as
+modificações no sinal de entrada.
+%}
+
+function y_out = transformacao(a, b, x)
+    n = 1:length(x);
+    n_modificado = round(a * n + b);
+    n_modificado = n_modificado(n_modificado > 0 & n_modificado <= length(x));
+    y_out = x(n_modificado);
+end
+
+%{
+5. Análise das Operações
+• Identificar e descrever os efeitos dos parâmetros a e b sobre a variável
+independente do sinal:
+  • Parâmetro a: Explicar como ele afeta a velocidade de reprodução
+  (dilatação ou compressão do tempo).
+  • Parâmetro b: Explicar como ele gera um deslocamento no tempo,
+  produzindo atraso ou adiantamento no sinal.
+%}
 
 
 
