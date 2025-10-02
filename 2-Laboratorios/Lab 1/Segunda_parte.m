@@ -39,7 +39,7 @@ disp(['Bits por amostra: ', num2str(bits)]);
 “Vila.wav".
 %}
 
-#sound(y,fs);
+sound(y,fs);
 
 %{
 3. Manipulação do Áudio com audioplayer
@@ -52,9 +52,9 @@ original.
 
 w = flip(y);
 
-#sound(w, fs); #Invertida
-#sound(y, fs/2); #Lenta
-#sound(y, fs*2); #Rápido
+sound(w, fs); #Invertida
+sound(y, fs/2); #Lenta
+sound(y, fs*2); #Rápido
 
 %{
 4. Programação de uma Função para Transformações no Sinal
