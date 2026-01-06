@@ -10,7 +10,7 @@ pkg load control
 
 % 1. CARREGAR DADOS EXPERIMENTAIS
 % =================================
-load('C:/Users/Lucas Sobral/Documents/Sinais-e-Sistemas/3-AP3/Dados/GrupoRobo_1.mat');  % Carrega z1
+load('C:/Users/Lucas Sobral/Documents/Sinais-e-Sistemas/3-AP3/Dados/GrupoRobo_12.mat');  % Carrega z1
 y = z1(:,1);               % Saída medida
 u = z1(:,2);               % Entrada degrau
 N = length(y);             % Número de amostras
